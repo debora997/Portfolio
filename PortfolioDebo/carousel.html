@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Galerie Créations</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background-color: #f9f9f9;
+      margin: 0;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .carousel-container {
+      position: relative;
+      width: 90%;
+      max-width: 600px;
+      margin: auto;
+      overflow: hidden;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+
+    .carousel-slide {
+      display: flex;
+      transition: transform 0.4s ease-in-out;
+    }
+
+    .carousel-slide img {
+      width: 100%;
+      border-radius: 10px;
+    }
+
+    .arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background-color: rgba(0, 0, 0, 0.5);
+      color: white;
+      border: none;
+      padding: 10px;
+      cursor: pointer;
+      font-size: 18px;
+      border-radius: 50%;
+      z-index: 1;
+    }
+
+    .arrow:hover {
+      background-color: rgba(0, 0, 0, 0.8);
+    }
+
+    .left-arrow {
+      left: 10px;
+    }
+
+    .right-arrow {
+      right: 10px;
+    }
+
+    h2 {
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Mes Créations</h2>
+
+  <div class="carousel-container">
+    <button class="arrow left-arrow" onclick="prevSlide()">&#10094;</button>
+    <div class="carousel-slide" id="carousel">
+      <img src="images/folio/3.png" style="height: 500px; width: 500px;" alt="Création 1">
+      <img src="images/folio/TonGuide VF.png" style="height: 500px; width: 500px;" alt="Création 2">
+      <img src="images/folio/Logo.jpg" style="height: 500px; width: 500px;" alt="Création 3">
+      <img src="images/folio/plan&go.png" style="height: 500px; width: 500px;" alt="Création 3">
+    </div>
+    <button class="arrow right-arrow" onclick="nextSlide()">&#10095;</button>
+  </div>
+
+  <script>
+    const carousel = document.getElementById('carousel');
+    const images = carousel.querySelectorAll('img');
+    let currentIndex = 0;
+
+    function showSlide(index) {
+      if (index < 0) index = images.length - 1;
+      if (index >= images.length) index = 0;
+      carousel.style.transform = `translateX(-${index * 100}%)`;
+      currentIndex = index;
+    }
+
+    function nextSlide() {
+      showSlide(currentIndex + 1);
+    }
+
+    function prevSlide() {
+      showSlide(currentIndex - 1);
+    }
+
+    // Afficher la première image au chargement
+    showSlide(0);
+  </script>
+
+</body>
+</html>
